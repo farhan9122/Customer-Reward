@@ -1,0 +1,49 @@
+[
+    {
+    "customerId": "C001",
+    "name": "Mark",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    },
+
+    {
+    "customerId": "C002",
+    "name": "Jack",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    },
+
+    {
+    "customerId": "C003",
+    "name": "Steve",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    },
+
+    {
+    "customerId": "C004",
+    "name": "Henry",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    },
+
+    {
+    "customerId": "C005",
+    "name": "Joe",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    },
+
+    {
+    "customerId": "C006",
+    "name": "John",
+    "transactionId": "T001",
+    "amount": 120.5,
+    "date": "15-03-2025"
+    }
+]
