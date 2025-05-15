@@ -1,0 +1,123 @@
+[
+    {
+      "customerId": "C001",
+      "transactionId": "T001",
+      "amount": 120,
+      "date": "2025-05-01"
+    },
+    {
+      "customerId": "C002",
+      "transactionId": "T002",
+      "amount": 90,
+      "date": "2025-04-15"
+    },
+    {
+      "customerId": "C003",
+      "transactionId": "T003",
+      "amount": 60,
+      "date": "2025-03-20"
+    },
+    {
+      "customerId": "C001",
+      "transactionId": "T004",
+      "amount": 200,
+      "date": "2025-03-05"
+    },
+    {
+      "customerId": "C004",
+      "transactionId": "T005",
+      "amount": 110,
+      "date": "2025-05-02"
+    },
+    {
+      "customerId": "C005",
+      "transactionId": "T006",
+      "amount": 49,
+      "date": "2025-03-12"
+    },
+    {
+      "customerId": "C006",
+      "transactionId": "T007",
+      "amount": 75,
+      "date": "2025-04-25"
+    },
+    {
+      "customerId": "C007",
+      "transactionId": "T008",
+      "amount": 130,
+      "date": "2025-05-07"
+    },
+    {
+      "customerId": "C008",
+      "transactionId": "T009",
+      "amount": 95,
+      "date": "2025-04-02"
+    },
+    {
+      "customerId": "C009",
+      "transactionId": "T010",
+      "amount": 180,
+      "date": "2025-03-17"
+    },
+    {
+      "customerId": "C010",
+      "transactionId": "T011",
+      "amount": 52,
+      "date": "2025-05-11"
+    },
+    {
+      "customerId": "C011",
+      "transactionId": "T012",
+      "amount": 105,
+      "date": "2025-04-08"
+    },
+    {
+      "customerId": "C012",
+      "transactionId": "T013",
+      "amount": 70,
+      "date": "2025-03-23"
+    },
+    {
+      "customerId": "C013",
+      "transactionId": "T014",
+      "amount": 40,
+      "date": "2025-04-20"
+    },
+    {
+      "customerId": "C014",
+      "transactionId": "T015",
+      "amount": 99,
+      "date": "2025-03-14"
+    },
+    {
+      "customerId": "C015",
+      "transactionId": "T016",
+      "amount": 115,
+      "date": "2025-05-05"
+    },
+    {
+      "customerId": "C001",
+      "transactionId": "T017",
+      "amount": 85,
+      "date": "2025-04-01"
+    },
+    {
+      "customerId": "C002",
+      "transactionId": "T018",
+      "amount": 140,
+      "date": "2025-05-10"
+    },
+    {
+      "customerId": "C003",
+      "transactionId": "T019",
+      "amount": 50,
+      "date": "2025-04-29"
+    },
+    {
+      "customerId": "C004",
+      "transactionId": "T020",
+      "amount": 160,
+      "date": "2025-03-30"
+    }
+  ]
+  
