@@ -1,3 +1,6 @@
-export const logEvent = (message) => {
-    console.log(`[LOG] ${new Date().toISOString()} - ${message}`);
-  };
+export const logInfo = (message, data) => {
+  console.log(`[INFO] ${message}`, data || "");
+};
+export const logError = (message, error) => {
+  console.error(`[ERROR] ${message}`, error || "");
+};

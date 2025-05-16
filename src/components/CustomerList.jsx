@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { calculateMonthlyRewards } from '../utils/rewardUtils';
-import { Table, Title, Container } from '../styles/StyledComponents';
+import PropTypes from "prop-types";
+import { calculateMonthlyRewards } from "../utils/calculateMonthlyRewards";
+import { Table, Title, Container } from "../styles/StyledComponents";
 
 const CustomerList = ({ transactions, onSelectCustomer, month, year }) => {
-  const customers = [...new Set(transactions.map(tx => tx.customerId))];
+  const customers = [...new Set(transactions.map((tx) => tx.customerId))];
 
   const calculateCustomerRewards = (customerId) => {
-    const userTx = transactions.filter(tx => tx.customerId === customerId);
+    const userTx = transactions.filter((tx) => tx.customerId === customerId);
     return calculateMonthlyRewards(userTx, month, year);
   };
 
@@ -15,23 +14,27 @@ const CustomerList = ({ transactions, onSelectCustomer, month, year }) => {
     <Container>
       <Title>All Customers</Title>
       <Table>
-      <thead>
-        <tr>
-          <th>Customer ID</th>
-        </tr>
-      </thead>
-      <tbody>
-      <ul>
-        {customers.map(id => {
-          const rewards = calculateCustomerRewards(id);
-          return (
-            <li key={id} onClick={() => onSelectCustomer(id)} style={{ cursor: 'pointer' }}>
-              <strong>Customer {id}</strong>: {rewards.total} points
-            </li>
-          );
-        })}
-      </ul>
-      </tbody>
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {customers.map((id) => {
+              const rewards = calculateCustomerRewards(id);
+              return (
+                <li
+                  key={id}
+                  onClick={() => onSelectCustomer(id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <strong>Customer {id}</strong>: {rewards.total} points
+                </li>
+              );
+            })}
+          </tr>
+        </tbody>
       </Table>
     </Container>
   );

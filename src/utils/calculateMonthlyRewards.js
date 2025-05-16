@@ -1,14 +1,18 @@
-import { calculatePoints } from '../constants/rewardRules'
-import { getMonthYear } from './dateUtils';
+import { calculatePoints } from "./rewardRules";
+import { getMonthYear } from "./dateUtils";
 
-export const calculateMonthlyRewards = (transactions, filterMonth, filterYear) => {
+export const calculateMonthlyRewards = (
+  transactions,
+  filterMonth,
+  filterYear
+) => {
   const monthly = {};
   let total = 0;
   const filteredTxs = [];
 
-  transactions.forEach(tx => {
+  transactions.forEach((tx) => {
     const monthYear = getMonthYear(tx.date);
-    const [month, year] = monthYear.split(' ');
+    const [month, year] = monthYear.split(" ");
     const points = calculatePoints(tx.amount);
     tx.points = points;
 
