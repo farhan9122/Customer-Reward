@@ -1,10 +1,12 @@
-export const fetchTransactionData = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      fetch("/mock data/transactions.json")
-        .then((res) => res.json())
-        .then((data) => resolve(data))
-        .catch((err) => reject(err));
-    }, 1000);
-  });
+import { logError } from "../utils/logger";
+
+export const fetchTransactionData = async () => {
+  try {
+    const res = await fetch("/mock data/transactions.json");
+    if (!res.ok) throw new Error("Failed to fetch transactions");
+    return await res.json();
+  } catch (err) {
+    logError.error(err);
+    throw err;
+  }
 };

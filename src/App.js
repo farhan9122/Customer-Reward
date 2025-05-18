@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import CustomerList from "./components/CustomerList";
 import CustomerDetails from "./components/CustomerDetails";
 import Filter from "./components/Filter";
-import { fetchTransactionData } from "./api/fetchTransactionData";
 import { getLastThreeMonths } from "./utils/dateUtils";
-import { logInfo, logError } from "./utils/logger";
+import { logInfo } from "./utils/logger";
 import { Title, Container } from "./styles/StyledComponents";
 
 const App = () => {
@@ -12,25 +11,6 @@ const App = () => {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [filteredMonth, setFilteredMonth] = useState("");
   const [filteredYear, setFilteredYear] = useState("2025");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        logInfo("Fetching transaction data...");
-        const data = await fetchTransactionData();
-        setTransactions(data);
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to load transactions.");
-        setLoading(false);
-        logError(err);
-        console.error(err);
-      }
-    };
-    loadData();
-  }, []);
 
   const handleCustomerSelect = (customerId) => {
     setSelectedCustomer(customerId);
@@ -55,10 +35,7 @@ const App = () => {
     setFilteredYear(defaultYear);
   };
 
-  if (loading)
-    return <div style={{ padding: "2rem" }}>🔄 Loading transactions...</div>;
-  if (error)
-    return <div style={{ padding: "2rem", color: "red" }}>{error}</div>;
+  
 
   return (
     <Container>
@@ -76,6 +53,7 @@ const App = () => {
         {!selectedCustomer ? (
           <CustomerList
             transactions={transactions}
+            setTransactions={setTransactions}
             onSelectCustomer={handleCustomerSelect}
             month={filteredMonth}
             year={filteredYear}

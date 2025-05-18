@@ -1,14 +1,53 @@
+import { useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { calculateMonthlyRewards } from "../utils/calculateMonthlyRewards";
+import { fetchTransactionData } from "../api/fetchTransactionData";
 import { Table, Title, Container } from "../styles/StyledComponents";
+import { logInfo, logError } from "../utils/logger";
 
-const CustomerList = ({ transactions, onSelectCustomer, month, year }) => {
-  const customers = [...new Set(transactions.map((tx) => tx.customerId))];
+const CustomerList = ({
+  transactions,
+  setTransactions,
+  onSelectCustomer,
+  month,
+  year,
+}) => {
+  const customers = useMemo(() => {
+    return [...new Set(transactions.map((tx) => tx.customerId))];
+  }, [transactions]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const calculateCustomerRewards = (customerId) => {
-    const userTx = transactions.filter((tx) => tx.customerId === customerId);
-    return calculateMonthlyRewards(userTx, month, year);
-  };
+  const customerRewards = useMemo(() => {
+    const rewardsMap = {};
+    customers.forEach((customerId) => {
+      const userTx = transactions.filter((tx) => tx.customerId === customerId);
+      rewardsMap[customerId] = calculateMonthlyRewards(userTx, month, year);
+    });
+    return rewardsMap;
+  }, [transactions, customers, month, year]);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        logInfo("Fetching transaction data...");
+        const data = await fetchTransactionData();
+        setTransactions(data);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load transactions.");
+        setLoading(false);
+        logError(err);
+        console.error(err);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (loading)
+    return <div style={{ padding: "2rem" }}>🔄 Loading transactions...</div>;
+  if (error)
+    return <div style={{ padding: "2rem", color: "red" }}>{error}</div>;
 
   return (
     <Container>
@@ -22,14 +61,14 @@ const CustomerList = ({ transactions, onSelectCustomer, month, year }) => {
         <tbody>
           <tr>
             {customers.map((id) => {
-              const rewards = calculateCustomerRewards(id);
               return (
                 <li
                   key={id}
                   onClick={() => onSelectCustomer(id)}
                   style={{ cursor: "pointer" }}
                 >
-                  <strong>Customer {id}</strong>: {rewards.total} points
+                  <strong>Customer {id}</strong>: {customerRewards[id].total}{" "}
+                  points
                 </li>
               );
             })}
