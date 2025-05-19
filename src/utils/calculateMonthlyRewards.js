@@ -11,6 +11,7 @@ export const calculateMonthlyRewards = (
   const filteredTxs = [];
 
   transactions.forEach((tx) => {
+    if (isNaN(new Date(tx.date))) return;
     const monthYear = getMonthYear(tx.date);
     const [month, year] = monthYear.split(" ");
     const points = calculatePoints(tx.amount);
